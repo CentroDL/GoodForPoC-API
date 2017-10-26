@@ -33,7 +33,7 @@ services:
       - 'PORT=9292'
       - 'RACK_ENV=development'
       - 'BUNDLE_CACHE=/app/vendor/cache'
-      - 'DATABASE_URL=postgres://g4poc:*(g4p0c_@psql:5432'
+      - 'DATABASE_URL=postgres://g4poc:*(g4p0c_@psql:5432/g4poc'
       - 'APP_DIR=/app'
       - 'MOCK_GRAPHQL_SERVER_HOST=http://mock_graphql_api:3000'
     depends_on:
