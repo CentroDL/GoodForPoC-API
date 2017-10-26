@@ -38,6 +38,7 @@ before_script:
 
 script:
   - bundle exec rake test
+  - bundle exec bundle-audit update && bundle exec bundle-audit check
 
 install:
   - bundle install --with development test

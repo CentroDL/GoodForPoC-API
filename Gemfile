@@ -47,6 +47,11 @@ gem 'sinatra-cross_origin', '~> 0.3.1'
 # Block & Throttle requests.
 gem 'rack-attack'
 
+group :development, :test do
+  # Audit gems for vulnerabilities.
+  gem 'bundler-audit', '~> 0.6.0'
+end
+
 group :test do
   # Test support for Rack.
   gem 'rack-test', require: false
