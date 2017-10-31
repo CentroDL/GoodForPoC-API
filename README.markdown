@@ -11,8 +11,7 @@ ourselves, we realized we needed help. This project is now open source. Please
 Check the [Setting Up](./SETTING_UP.markdown) guide. Also read the [contribution guidelines](./CONTRIBUTING.md) to learn more about helping with this project.
 
 ## Contributors
-[See list of contributors][contribs]
-
+[See list of contributors](https://github.com/GoodForPoC/GoodForPoC-API/graphs/contributors).
 This project is maintained by @almnt, @cattsmall, and @jalcine; the founders of Good for People of Color, Inc.
 
 ## License
