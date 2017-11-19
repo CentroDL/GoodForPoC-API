@@ -13,7 +13,8 @@ RUN apk --update add --virtual build_deps \
 COPY ["Gemfile*", "$APP_DIR/"]
 WORKDIR $APP_DIR
 
-RUN bundle install --deployment --binstubs
+RUN gem install bundler --update && \
+    bundle install --deployment --verbose
 
 COPY . .
 
