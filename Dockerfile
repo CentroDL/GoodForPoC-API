@@ -13,7 +13,7 @@ RUN apk --update add --virtual build_deps \
 COPY ["Gemfile*", "$APP_DIR/"]
 WORKDIR $APP_DIR
 
-RUN bundle install --deployment
+RUN bundle install --deployment --binstubs
 
 COPY . .
 
