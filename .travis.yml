@@ -1,45 +1,50 @@
+---
 language: ruby
 services:
-- postgresql
+  - postgresql
+
 env:
   global:
-  - RACK_ENV: test
-  - DATABASE_URL: postgresql://postgres@localhost/good4poc_test
+    - RACK_ENV: test
+    - DATABASE_URL: postgresql://postgres@localhost/good4poc_test
+
 before_deploy:
-- openssl aes-256-cbc -K $encrypted_42103d47f305_key -iv $encrypted_42103d47f305_iv
-  -in ./.travis/deploy_key.enc -out ./.travis/deploy_key -d
-- eval "$(ssh-agent -s)"
-- chmod 600 .travis/deploy_key
-- ssh-add .travis/deploy_key
+  - openssl aes-256-cbc -K $encrypted_42103d47f305_key -iv $encrypted_42103d47f305_iv -in ./.travis/deploy_key.enc -out ./.travis/deploy_key -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 .travis/deploy_key
+  - ssh-add .travis/deploy_key
+
 deploy:
-- provider: script
-  script: scripts/deploy prod
-  on:
-    branch: master
-    condition: "$TRAVIS_PULL_REQUEST = false"
-- provider: script
-  script: scripts/deploy staging
-  on:
-    branch: develop
-    condition: "$TRAVIS_PULL_REQUEST = false"
+  - provider: script
+    script: scripts/deploy prod
+    on:
+      branch: master
+      condition: $TRAVIS_PULL_REQUEST = false
+  - provider: script
+    script: scripts/deploy staging
+    on:
+      branch: develop
+      condition: $TRAVIS_PULL_REQUEST = false
+
 addons:
   ssh_known_hosts:
-  - dokku.goodforpocin.tech
-  - github.com
+    - dokku.goodforpocin.tech
+    - github.com
+
 notifications:
   webhooks:
     urls:
-    - https://webhooks.gitter.im/e/d9bba348105e7154a7b6
+      - https://webhooks.gitter.im/e/d9bba348105e7154a7b6
     on_success: always
     on_failure: always
     on_start: always
+
 before_script:
-- psql -c 'create database good4poc_test;' -U postgres
+  - psql -c 'create database good4poc_test;' -U postgres
+
 script:
-- bundle exec rake test
-- bundle exec bundle-audit update && bundle exec bundle-audit check
+  - bundle exec rake test
+  - bundle exec bundle-audit update && bundle exec bundle-audit check
+
 install:
-- bundle install --with development test
-before_install:
-- openssl aes-256-cbc -K $encrypted_5615895e9f52_key -iv $encrypted_5615895e9f52_iv
-  -in .travis/deploy_env.enc -out .travis/deploy_key -d
+  - bundle install --with development test
