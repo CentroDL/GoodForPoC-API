@@ -4,7 +4,7 @@
 # like.
 #
 ---
-version: '2.1'
+version: '3.1'
 services:
   psql:
     image: postgres:alpine
@@ -37,8 +37,7 @@ services:
       - 'APP_DIR=/app'
       - 'MOCK_GRAPHQL_SERVER_HOST=http://mock_graphql_api:3000'
     depends_on:
-      psql:
-        condition: service_healthy
+      - psql
     links:
       - psql
       - mock_graphql_api
@@ -46,6 +45,7 @@ services:
       - '${PORT-9292}:9292'
     volumes:
       - '.:/app'
+      - 'api_vendor:/app/vendor'
 volumes:
   api_data:
-    driver: local
+  api_vendor:

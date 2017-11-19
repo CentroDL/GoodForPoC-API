@@ -14,7 +14,6 @@ COPY ["Gemfile*", "$APP_DIR/"]
 WORKDIR $APP_DIR
 
 RUN bundle install --binstubs=bin --deployment
-RUN bundle update --full-index
 
 COPY . .
 VOLUME ["$APP_DIR/"]
@@ -23,5 +22,4 @@ COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-
-CMD ["puma", "-C", "config/puma.rb"]
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

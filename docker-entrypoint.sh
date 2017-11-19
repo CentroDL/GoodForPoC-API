@@ -1,6 +1,6 @@
 #!/bin/sh
 
 # Run migrations
-rake sequel:migrate
+bundle exec rake sequel:migrate
 
 exec "$@"
