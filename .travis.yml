@@ -15,6 +15,7 @@ before_deploy:
   - ssh-add .travis/deploy_key
 
 deploy:
+  skip_cleanup: true
   - provider: script
     script: scripts/deploy prod
     on:
