@@ -14,7 +14,7 @@ COPY ["Gemfile*", "$APP_DIR/"]
 WORKDIR $APP_DIR
 
 RUN gem install bundler --update && \
-    bundle install --deployment --binstubs
+    bundle install --binstubs
 
 COPY . .
 
