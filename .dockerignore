@@ -2,3 +2,4 @@ mock-api/*
 site.retry
 infra
 vendor/
+bin/
