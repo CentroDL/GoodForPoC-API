@@ -13,13 +13,9 @@ RUN apk --update add --virtual build_deps \
 COPY ["Gemfile*", "$APP_DIR/"]
 WORKDIR $APP_DIR
 
-RUN bundle install --binstubs=bin --deployment
+RUN bundle install --deployment
 
 COPY . .
-VOLUME ["$APP_DIR/"]
 
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["./scripts/docker-entrypoint"]
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
