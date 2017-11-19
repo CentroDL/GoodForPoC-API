@@ -15,13 +15,14 @@ before_deploy:
   - ssh-add .travis/deploy_key
 
 deploy:
-  skip_cleanup: true
   - provider: script
+    skip_cleanup: true
     script: scripts/deploy prod
     on:
       branch: master
       condition: $TRAVIS_PULL_REQUEST = false
   - provider: script
+    skip_cleanup: true
     script: scripts/deploy staging
     on:
       branch: develop
