@@ -2,11 +2,13 @@
 language: ruby
 services:
   - postgresql
+  - redis
 
 env:
   global:
     - RACK_ENV: test
     - DATABASE_URL: postgresql://postgres@localhost/good4poc_test
+    - REDIS_URL: redis://redis@localhost/
 
 deploy:
   - provider: script
