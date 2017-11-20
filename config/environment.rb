@@ -3,7 +3,8 @@
 # Check we have the necessary ENV vars set
 [
   'RACK_ENV',
-  'DATABASE_URL'
+  'DATABASE_URL',
+  'REDIS_URL'
 ].each { |v| raise("#{v} is not set.") if ENV[v].nil? }
 
 require 'bundler'
